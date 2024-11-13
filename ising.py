@@ -13,7 +13,7 @@ from single_flip import *
 if __name__ == '__main__':
     N = 100
     ising = initializeIsing(N)
-    Js = initializeJ(N, "Ones")
+    Js = initializeJ(N, "gaus")
     Es = []
     temp = 1
     Emin = calculateEnergy(np.abs(ising), Js)
