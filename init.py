@@ -16,6 +16,9 @@ def initializeJ(N, rule = "Ones"):
     if rule == "Ones":
         J_down = np.ones((N-1, N))
         J_right = np.ones((N, N-1))
+    if rule == "-1":
+        J_down = -np.ones((N-1, N))
+        J_right = -np.ones((N, N-1))
     if rule == "pm":
         J_down = np.random.choice([-1, 1], size=(N-1, N))
         J_right = np.random.choice([-1, 1], size=(N, N-1))
@@ -79,10 +82,10 @@ def getNeighbors(ising, spot):
 def getJfromNum(dir, spot, J_arr):
 
     # dir = 0,1,2,3
-    # 0 - J_down[i,j]
-    # 1 - J_down[i-1, j]
-    # 2 - J_right[i, j]
-    # 3 - J_right[i, j-1]
+    # 0 - J_right[i, j]
+    # 1 - J_right[i, j-1]
+    # 2 - J_down[i,j]
+    # 3 - J_down[i-1, j]
 
     N = len(J_arr[0][0])
     i = spot[0]

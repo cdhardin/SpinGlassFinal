@@ -94,10 +94,6 @@ class Test_Ising(unittest.TestCase):
       for i in range(4):
          self.assertEqual(Js_cycle[i], ising.getJfromNum(i, spot, J_arr))
 
-           
-
-
-
 
 
 
