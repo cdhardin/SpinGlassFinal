@@ -7,7 +7,7 @@ from init import *
 from single_flip import *
     
 
-
+flipLogic = singleFlipLogic
 
 
 if __name__ == '__main__':
@@ -21,7 +21,7 @@ if __name__ == '__main__':
     for i in range(500):
         print(i)
         for j in range(100):
-            ising = singleFlipLogic(ising, Js, temp)
+            ising = flipLogic(ising, Js, temp)
         Es.append(calculateEnergy(ising, Js))
 
     plt.scatter(range(500), Es, s = 12)
