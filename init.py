@@ -44,6 +44,10 @@ def calculateEnergy(ising, J_arr):
             Esum = Esum - contribution_tot
     return Esum
 
+def calculateMagnetism(ising):
+    return np.sum(ising)
+
+
 def pickRandomSpot(ising):
     N = len(ising[0])
     i = np.random.randint(0,N)

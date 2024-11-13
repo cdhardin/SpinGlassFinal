@@ -1,35 +1,47 @@
+## Making sure that the standard ising model works as expected - ish
 import numpy as np
 import matplotlib.pyplot as plt
-
-
 
 from init import *
 from wolff import *
 from single_flip import *
     
 
-flipLogic = wolffFlip
+flipLogic = singleFlipLogic
 
 
 if __name__ == '__main__':
-    N = 100
+    N = 30
     ising = initializeIsing(N)
     Js = initializeJ(N, "Ones")
     Es = []
-    temp = 3
+    Ms = []
+    Ms2 = []
+    betas = []
     Emin = calculateEnergy(np.abs(ising), Js)
+    Mmin = calculateMagnetism(np.abs(ising))
 
-
-    numRuns = 500
-    for i in range(numRuns):
-        temp = temp - 3/800
-        print(i)
-        for j in range(100):
+    
+    temps = np.linspace(0.1, 10, 80)
+    for temp in temps:
+        ising = initializeIsing(N)
+        ising2 = initializeIsing(N)
+        print(temp)
+        for j in range(50000):
             ising = flipLogic(ising, Js, temp)
-        Es.append(calculateEnergy(ising, Js))
+            ising2 = flipLogic(ising2, Js, temp)
+        # Es.append(calculateEnergy(ising, Js)/(N*N))
+        Ms.append(calculateMagnetism(ising)/(N*N))
+        Ms2.append(calculateMagnetism(ising2)/(N*N))
+        betas.append(1/temp)
 
-    plt.scatter(range(numRuns), Es, s = 12)
-    plt.axhline(Emin)
+    fig, ax1 = plt.subplots()
+    # Creating a secondary y-axis for Ms
+    ax1.scatter(temps, np.abs(Ms), s=12, c='g', label='Ms')
+    ax1.scatter(temps, np.abs(Ms2), s=12, c='r', label='Ms')
+    ax1.set_ylabel('Ms', color='g')
+
+    # plt.axhline(Emin)
     plt.show()
     plt.imshow(ising)
     plt.show()
