@@ -22,7 +22,7 @@ if __name__ == '__main__':
     Mmin = calculateMagnetism(np.abs(ising))
 
     
-    temps = np.linspace(0.1, 10, 80)
+    temps = np.linspace(0.01, 5, 100)
     for temp in temps:
         ising = initializeIsing(N)
         ising2 = initializeIsing(N)
@@ -44,4 +44,6 @@ if __name__ == '__main__':
     # plt.axhline(Emin)
     plt.show()
     plt.imshow(ising)
+    plt.show()
+    plt.imshow(ising2)
     plt.show()

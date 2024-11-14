@@ -3,7 +3,7 @@ import init
 import unittest 
 import numpy as np
 
-class Test_Ising(unittest.TestCase):
+class Test_Wolff(unittest.TestCase):
     
     def test_addToCluster100p(self):
         ising = [
