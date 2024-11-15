@@ -17,7 +17,7 @@ class Test_Ising(unittest.TestCase):
       sum0 = np.sum(Js[0])
       sum1 = np.sum(Js[1])
       self.assertEqual(sum0, sum1)
-      self.assertEqual(sum1, N * (N-1))
+      self.assertEqual(sum1, N * (N))
 
    def test_J_pm(self):
       N = 100
@@ -25,9 +25,9 @@ class Test_Ising(unittest.TestCase):
       sum0 = np.sum(Js[0])
       sum1 = np.sum(Js[1])
       sum2 = np.sum(np.abs(Js[1]))
-      self.assertFalse(sum0 == N * (N-1))
-      self.assertFalse(sum1 == N * (N-1))
-      self.assertTrue(sum2 == N * (N-1))
+      self.assertFalse(sum0 == N * (N))
+      self.assertFalse(sum1 == N * (N))
+      self.assertTrue(sum2 == N * (N))
 
    def test_energy_calc_allPos(self):
       N = 37
@@ -42,7 +42,7 @@ class Test_Ising(unittest.TestCase):
       N = 37
       spins = np.abs(ising.initializeIsing(N))
       Js = ising.initializeJ(N, "Ones")
-      expectedE = - (2*N*(N-1))
+      expectedE = - (2*N*(N))
       E = ising.calculateEnergy(spins, Js)
       self.assertEqual(expectedE, E)
 
@@ -68,7 +68,7 @@ class Test_Ising(unittest.TestCase):
       N = 3
       ising1 = np.zeros((N,N))
       spot = (0,1)
-      neighborList = [(0,2), (0,0), (1,1), None]
+      neighborList = [(0,2), (0,0), (1,1), (2,1)]
       funcNeighbors = ising.getNeighbors(ising1, spot)
       for i in range(4):
          self.assertEqual(neighborList[i], funcNeighbors[i])
